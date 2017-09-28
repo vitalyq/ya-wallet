@@ -12,8 +12,11 @@
     "test": "eslint src --ignore-pattern \"/src/vendor/*\""
   },
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "express": "^4.15.5"
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-logger": "^3.1.0",
+    "koa-router": "^7.2.1",
+    "koa-static": "^4.0.1"
   },
   "devDependencies": {
     "eslint": "^4.7.2",

@@ -1,30 +1,27 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cards = require('./controllers/cards');
+const Koa = require('koa');
+const logger = require('koa-logger');
+const bodyParser = require('koa-bodyparser');
+const router = require('koa-router')();
+const serve = require('koa-static');
+const { getCards, createCard, deleteCard } = require('./controllers/cards');
+const handleError = require('./controllers/error');
 
-const app = express();
+const app = new Koa();
 
-// Application-level middleware
-// - parse application/json
-// - parse application/x-www-form-urlencoded
-// - serve static files
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
+// Set up routes
+router.get('/cards', getCards);
+router.post('/cards', createCard);
+router.delete('/cards/:id', deleteCard);
+router.all('/error', handleError);
 
-app.use('/cards', cards);
-app.get('/error', () => {
-  throw Error('Oops!');
-});
-
-// Error-handling middleware
-app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
-  console.error(err);
-  res.status(500).send('Something broke!');
-});
+// Set up middleware
+app.use(logger());
+app.use(bodyParser());
+app.use(router.routes());
+app.use(serve('./public'));
 
 app.listen(3000, () => {
-  console.log('YM Node School App listening on port 3000!');
+  console.log('Listening on port 3000!');
 });
 
 // Export the app
