@@ -2,8 +2,8 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const { promisify } = require('util');
-const wrap = require('../utils/wrap');
-const luhn = require('../utils/luhn-algorithm');
+const wrap = require('../vendor/wrap');
+const luhn = require('../vendor/luhn-algorithm');
 
 const CARDS_FILE = path.join(__dirname, '../data/cards.json');
 const readFile = promisify(fs.readFile);

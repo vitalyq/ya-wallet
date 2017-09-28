@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node src",
     "watch": "nodemon src -L",
-    "test": "eslint src --ignore-pattern \"/src/utils/*\""
+    "test": "eslint src --ignore-pattern \"/src/vendor/*\""
   },
   "dependencies": {
     "body-parser": "^1.18.2",
