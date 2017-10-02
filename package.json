@@ -9,9 +9,11 @@
   "scripts": {
     "start": "node src",
     "watch": "nodemon src -L",
+    "build": "webpack",
     "test": "eslint src --ignore-pattern \"/src/vendor/*\""
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-logger": "^3.1.0",
@@ -19,9 +21,16 @@
     "koa-static": "^4.0.1"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
     "eslint": "^4.7.2",
     "eslint-config-airbnb-base": "^12.0.0",
+    "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.7.0",
-    "nodemon": "^1.12.1"
+    "html-webpack-plugin": "^2.30.1",
+    "nodemon": "^1.12.1",
+    "webpack": "^3.6.0"
   }
 }
