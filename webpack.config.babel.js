@@ -1,7 +1,12 @@
-const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const BabelWebpackPlugin = require('babel-minify-webpack-plugin');
+const path = require('path');
 
-module.exports = {
+const prod = process.env.NODE_ENV === 'production';
+
+const config = {
   entry: [
     'babel-polyfill',
     './src/client/index.js',
@@ -16,11 +21,15 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: [
-          'babel-loader',
-          'eslint-loader',
-        ],
+        use: ['babel-loader', 'eslint-loader'],
         include: path.join(__dirname, 'src'),
+      },
+      {
+        test: /\.css$/,
+        use: prod ? ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'postcss-loader'],
+        }) : ['style-loader', 'css-loader', 'postcss-loader'],
       },
     ],
   },
@@ -29,3 +38,13 @@ module.exports = {
     new HtmlWebpackPlugin({ title: 'Wallet' }),
   ],
 };
+
+if (prod) {
+  config.plugins = config.plugins.concat([
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new ExtractTextPlugin('styles.css'),
+    new BabelWebpackPlugin(),
+  ]);
+}
+
+module.exports = config;

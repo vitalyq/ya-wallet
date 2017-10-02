@@ -1,3 +1,4 @@
+import './styles.css';
 import helloHandler from './handlers';
 
 const component = () => {
