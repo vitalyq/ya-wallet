@@ -1,3 +1,4 @@
+const { checkCardNumber, checkCardId } = require('../../models/cards/validator');
 const { getCards, createCard, deleteCard } = require('../../models/cards');
 
 module.exports = {
@@ -9,14 +10,16 @@ module.exports = {
   // Add new card
   // Parses urlencoded or JSON body fields: cardNumber, balance
   async createCard(ctx) {
-    const card = await createCard(ctx.request.body);
+    let card = checkCardNumber(ctx.request.body);
+    card = await createCard(card);
     ctx.status = 201;
     ctx.body = card;
   },
 
   // Delete card by ID
   async deleteCard(ctx) {
-    await deleteCard(ctx.params.id);
+    const id = checkCardId(ctx.params.id);
+    await deleteCard(id);
     ctx.status = 200;
   },
 };
