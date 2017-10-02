@@ -7,10 +7,7 @@ const path = require('path');
 const prod = process.env.NODE_ENV === 'production';
 
 const config = {
-  entry: [
-    'babel-polyfill',
-    './src/client/index.js',
-  ],
+  entry: './src/client/index.js',
 
   output: {
     path: path.join(__dirname, 'dist'),
