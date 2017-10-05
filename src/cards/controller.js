@@ -1,5 +1,5 @@
-const { checkCardNumber, checkCardId } = require('../../models/cards/validator');
-const { getCards, createCard, deleteCard } = require('../../models/cards');
+const { checkCardNumber, checkCardId } = require('./validator');
+const { getCards, createCard, deleteCard } = require('./model');
 
 module.exports = {
   // Get list of all cards in JSON format

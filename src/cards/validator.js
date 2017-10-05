@@ -1,5 +1,5 @@
-const luhn = require('../../vendor/luhn-algorithm');
-const koaError = require('../../utils/koaError');
+const luhn = require('../vendor/luhn-algorithm');
+const koaError = require('../utils/koaError');
 
 module.exports = {
   checkCardNumber(card) {

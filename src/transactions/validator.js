@@ -1,4 +1,4 @@
-const koaError = require('../../utils/koaError');
+const koaError = require('../utils/koaError');
 
 const allowedTypes = [
   'paymentMobile',

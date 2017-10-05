@@ -1,5 +1,8 @@
-const { getData, saveData, getNextId } = require('../dataSource')('cards.json');
-const koaError = require('../../utils/koaError');
+const path = require('path');
+const loader = require('../utils/dataLoader');
+const koaError = require('../utils/koaError');
+
+const { getData, saveData, getNextId } = loader(path.join(__dirname, 'data.json'));
 
 module.exports = {
   async getCards() {

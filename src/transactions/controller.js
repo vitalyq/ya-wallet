@@ -1,6 +1,6 @@
-const { checkCardId } = require('../../models/cards/validator');
-const { checkTransaction } = require('../../models/transactions/validator');
-const { getTransactions, createTransaction } = require('../../models/transactions');
+const { checkCardId } = require('../cards/validator');
+const { checkTransaction } = require('./validator');
+const { getTransactions, createTransaction } = require('./model');
 
 module.exports = {
   async getTransactions(ctx) {
