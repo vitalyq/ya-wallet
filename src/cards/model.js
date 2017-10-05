@@ -9,6 +9,16 @@ module.exports = {
     return getData();
   },
 
+  async getCard(id) {
+    const cards = await getData();
+    const card = cards.find(c => c.id === id);
+    if (!card) {
+      throw koaError(400, 'Card not found');
+    }
+
+    return card;
+  },
+
   async createCard(card) {
     const cards = await getData();
     const cardExists = cards.some(c => (
