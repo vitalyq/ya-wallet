@@ -42,7 +42,12 @@ module.exports = {
       throw koaError(400, 'Card not found');
     }
 
-    card.balance -= amount;
+    const newBalance = card.balance - amount;
+    if (newBalance < 0) {
+      throw koaError(400, 'Not enough funds');
+    }
+
+    card.balance = newBalance;
     await saveData(cards);
   },
 
