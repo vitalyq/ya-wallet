@@ -5,6 +5,7 @@ const router = require('koa-router')();
 const serve = require('koa-static');
 const { getCards, createCard, deleteCard } = require('./cards/controller');
 const { getTransactions, createTransaction } = require('./transactions/controller');
+const { payForCell } = require('./operations/controller');
 
 const app = new Koa();
 
@@ -14,6 +15,7 @@ router.post('/cards', createCard);
 router.delete('/cards/:id', deleteCard);
 router.get('/cards/:id/transactions', getTransactions);
 router.post('/cards/:id/transactions', createTransaction);
+router.post('/cards/:id/pay', payForCell);
 
 // Catch downstream errors
 app.use(async (ctx, next) => {

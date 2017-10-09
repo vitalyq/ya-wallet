@@ -35,6 +35,17 @@ module.exports = {
     return card;
   },
 
+  async chargeCard(id, amount) {
+    const cards = await getData();
+    const card = cards.find(c => c.id === id);
+    if (!card) {
+      throw koaError(400, 'Card not found');
+    }
+
+    card.balance -= amount;
+    await saveData(cards);
+  },
+
   async deleteCard(id) {
     const cards = await getData();
     const newCards = cards.filter(card => card.id !== id);
