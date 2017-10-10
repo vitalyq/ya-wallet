@@ -1,8 +1,11 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BabelWebpackPlugin = require('babel-minify-webpack-plugin');
 const path = require('path');
+
+const BUILD_PATH = path.join(__dirname, 'dist');
 
 module.exports = [(env) => {
   const prod = env && env.prod;
@@ -12,7 +15,7 @@ module.exports = [(env) => {
     entry: './src/client/index.js',
 
     output: {
-      path: path.join(__dirname, 'dist'),
+      path: BUILD_PATH,
       filename: 'index.js',
     },
 
@@ -39,15 +42,16 @@ module.exports = [(env) => {
 
   if (prod) {
     config.plugins = config.plugins.concat([
-      new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
-      new webpack.optimize.ModuleConcatenationPlugin(),
-      new ExtractTextPlugin('styles.css'),
-      new BabelWebpackPlugin(),
+      new CleanWebpackPlugin([BUILD_PATH]),
       new CopyWebpackPlugin([
         { from: 'src/client/icons' },
         { from: 'src/client/fonts', to: 'fonts' },
         { from: 'src/client/assets', to: 'assets' },
       ]),
+      new ExtractTextPlugin('styles.css'),
+      new BabelWebpackPlugin(),
+      new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
+      new webpack.optimize.ModuleConcatenationPlugin(),
     ]);
   }
 

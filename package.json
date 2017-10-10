@@ -36,6 +36,7 @@
     "babel-plugin-import": "^1.6.0",
     "babel-preset-env": "^2.0.0-beta.2",
     "babel-preset-react": "^7.0.0-beta.2",
+    "clean-webpack-plugin": "^0.1.17",
     "copy-webpack-plugin": "^4.1.1",
     "css-loader": "^0.28.7",
     "eslint": "^4.8.0",
