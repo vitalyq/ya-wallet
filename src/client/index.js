@@ -1,14 +1,9 @@
-import './styles.css';
-import helloHandler from './handlers';
+import React from 'react';
+import {hydrate as reactHydrate} from 'react-dom';
+import {hydrate as emotionHydrate} from 'emotion';
+import {App} from '../client/components';
 
-const component = () => {
-  const HELLO_NODE_SCHOOL_APP = 'Hello, Node School App!';
-  const element = document.createElement('div');
+//const {ids, appData} = window.__data;
+//emotionHydrate(ids);
 
-  element.innerHTML = HELLO_NODE_SCHOOL_APP;
-  element.addEventListener('click', () => helloHandler(HELLO_NODE_SCHOOL_APP));
-
-  return element;
-};
-
-document.body.appendChild(component());
+reactHydrate(<App data={{}} />, document.getElementById('root'));
