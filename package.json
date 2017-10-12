@@ -8,8 +8,8 @@
   "private": true,
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "start:prod": "cross-env NODE_ENV=production node src",
-    "start": "nodemon --watch src --ignore client/ -L src",
+    "start": "cross-env NODE_ENV=production node src",
+    "dev": "nodemon --watch src --ignore client/ -L src",
     "test": "eslint src --ignore-pattern \"/src/vendor/*\""
   },
   "dependencies": {

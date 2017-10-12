@@ -16,7 +16,7 @@ const commonLoaders = [{
 }];
 
 const configClient = {
-  name: 'Client',
+  name: 'client',
   entry: './src/client/entry-client.js',
   output: {
     path: BUILD_PATH,
@@ -37,7 +37,7 @@ const configClient = {
 };
 
 const configServer = {
-  name: 'Server',
+  name: 'server',
   target: 'node',
   externals: [nodeExternals()],
   entry: './src/client/entry-server.js',
