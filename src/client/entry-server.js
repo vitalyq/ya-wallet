@@ -29,7 +29,7 @@ export default function serverRenderer() {
         <body>
           <div id="root" dangerouslySetInnerHTML={{ __html: html }} />
           <script dangerouslySetInnerHTML={{ __html: viewData }} />
-          <script src="bundle.client.js" />
+          <script src="client.js" />
         </body>
       </html>
     );

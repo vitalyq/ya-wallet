@@ -20,7 +20,7 @@ const configClient = {
   entry: './src/client/entry-client.js',
   output: {
     path: BUILD_PATH,
-    filename: 'bundle.client.js',
+    filename: 'client.js',
     publicPath: '/',
   },
   module: {
@@ -44,7 +44,7 @@ const configServer = {
   entry: './src/client/entry-server.js',
   output: {
     path: BUILD_PATH,
-    filename: 'bundle.server.js',
+    filename: 'server.js',
     publicPath: '/',
     libraryTarget: 'commonjs2',
   },
