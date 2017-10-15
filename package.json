@@ -29,7 +29,8 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-emotion": "^8.0.5",
-    "webpack": "^3.6.0"
+    "webpack": "^3.6.0",
+    "webpack-hot-server-middleware": "git+https://github.com/pho3nixf1re/webpack-hot-server-middleware.git#support-koa"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.4",

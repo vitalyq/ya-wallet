@@ -21,6 +21,7 @@ const configClient = {
   output: {
     path: BUILD_PATH,
     filename: 'bundle.client.js',
+    publicPath: '/',
   },
   module: {
     rules: commonLoaders.concat([
@@ -39,11 +40,12 @@ const configClient = {
 const configServer = {
   name: 'server',
   target: 'node',
-  externals: [nodeExternals()],
+  externals: [nodeExternals({ whitelist: [/^antd/] })],
   entry: './src/client/entry-server.js',
   output: {
     path: BUILD_PATH,
     filename: 'bundle.server.js',
+    publicPath: '/',
     libraryTarget: 'commonjs2',
   },
   module: {
