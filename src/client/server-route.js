@@ -7,20 +7,47 @@ const PROD = process.env.NODE_ENV === 'production';
 
 module.exports = (app) => {
   if (!PROD) {
+    const PassThrough = require('stream').PassThrough;
     const webpack = require('webpack');
-    const { devMiddleware, hotMiddleware } = require('koa-webpack-middleware');
+    const devMiddleware = require('webpack-dev-middleware');
+    const hotMiddleware = require('webpack-hot-middleware');
     const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
     const config = require('../../webpack.config');
+
     const compiler = webpack(config);
-    const devMiddlewareInstance = devMiddleware(compiler, {
-      // serverSideRender is conflicting with koa-webpack-middleware
-      // serverSideRender: true,
+    const dev = devMiddleware(compiler, {
+      serverSideRender: true,
       publicPath: '/',
       stats: { colors: true },
     });
-    app.use(devMiddlewareInstance);
+    const hot = hotMiddleware(compiler);
 
-    // app.use(hotMiddleware(compiler.compilers.find(c => c.name === 'client')));
+    app.use(async (ctx, next) => {
+      await new Promise((resolve) => {
+        dev(ctx.req, {
+          end: (content) => {
+            ctx.body = content;
+            resolve();
+          },
+          setHeader: ctx.set.bind(ctx),
+          locals: ctx.state,
+        }, () => resolve(next()));
+      });
+    });
+
+    // TODO: Fix Hot Middleware Wrapper
+    // app.use(async (ctx, next) => {
+    //   const stream = new PassThrough();
+    //   await hot(ctx.req, {
+    //     write: stream.write.bind(stream),
+    //     writeHead: (status, headers) => {
+    //       stream.pipe(ctx.res);
+    //       ctx.status = status;
+    //       ctx.set(headers);
+    //     },
+    //   }, next);
+    // });
+
     app.use(webpackHotServerMiddleware(compiler, {
       createHandler: webpackHotServerMiddleware.createKoaHandler,
     }));

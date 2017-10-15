@@ -4,14 +4,14 @@ import { extractCritical } from 'emotion-server';
 import { App } from './components';
 
 const DATA = {
-  user: {
-    login: 'samuel_johnson',
-    name: 'Samuel Johnson',
-  },
+  // user: {
+  //   login: 'samuel_johnson',
+  //   name: 'Samuel Johnson',
+  // },
 };
 
 export default function serverRenderer() {
-  return async (ctx) => {
+  return (ctx) => {
     const app = renderToString(<App data={DATA} />);
     const { html, ids, css } = extractCritical(app);
     const viewData = `window.__data=${JSON.stringify({ ids, DATA })};`;

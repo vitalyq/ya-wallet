@@ -59,6 +59,17 @@ const configServer = {
   plugins: [],
 };
 
+if (!PROD) {
+  configClient.entry = [
+    'webpack-hot-middleware/client?name=client',
+    'react-hot-loader/patch',
+  ].concat(configClient.entry);
+
+  configClient.plugins = configClient.plugins.concat([
+    new webpack.HotModuleReplacementPlugin(),
+  ]);
+}
+
 if (PROD) {
   configClient.plugins = configClient.plugins.concat([
     new CleanWebpackPlugin([BUILD_PATH]),

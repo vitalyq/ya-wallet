@@ -32,9 +32,9 @@ app.use(async (ctx, next) => {
 // Set up middleware
 app.use(logger());
 app.use(bodyParser());
-addClientRoute(app);
 app.use(router.routes());
 app.use(serve('./dist'));
+addClientRoute(app);
 
 app.listen(3000, () => {
   console.log('Listening on port 3000!');
