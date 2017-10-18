@@ -1,9 +1,11 @@
 {
   "presets": [
-    ["env", {
-      "modules": false,
-      "useBuiltIns": "usage"
-    }],
+    ["env", { "modules": false, "useBuiltIns": "usage" }],
     "react"
+  ],
+  "plugins": [
+    "emotion",
+    ["import", { "libraryName": "antd", "style": "css" }],
+    "react-hot-loader/babel"
   ]
 }

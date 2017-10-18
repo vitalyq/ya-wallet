@@ -3,6 +3,7 @@ const logger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
 const router = require('koa-router')();
 const serve = require('koa-static');
+const addClientRoute = require('./client/server-route');
 const { getCards, createCard, deleteCard } = require('./cards/controller');
 const { getTransactions, createTransaction } = require('./transactions/controller');
 const { payForCell } = require('./operations/controller');
@@ -32,7 +33,8 @@ app.use(async (ctx, next) => {
 app.use(logger());
 app.use(bodyParser());
 app.use(router.routes());
-app.use(serve('./public'));
+addClientRoute(app);
+app.use(serve('./dist'));
 
 app.listen(3000, () => {
   console.log('Listening on port 3000!');
