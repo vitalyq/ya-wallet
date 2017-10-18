@@ -3,6 +3,7 @@
 // In order for development build to work, run the production build once
 // to copy the assets.
 const router = require('koa-router')();
+const logger = require('../utils/logger');
 
 const PROD = process.env.NODE_ENV === 'production';
 const DATA = {
@@ -68,9 +69,7 @@ module.exports = (app) => {
     try {
       serverRenderer = require('../../dist/server.js').default;
     } catch (error) {
-      console.log(error);
-      console.error('Server bundle is missing. Please, build the project.');
-      process.exit(1);
+      logger.error('Server bundle is missing. Please, build the project.');
     }
 
     // Render view from the server bundle

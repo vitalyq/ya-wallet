@@ -7,7 +7,6 @@
   "rules": {
     "no-param-reassign": ["error", { "props": false }],
     "no-restricted-globals": "off",
-    "no-console": "off",
     "no-underscore-dangle": "off",
     "react/no-danger": "off"
   }
