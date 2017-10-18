@@ -33,8 +33,8 @@ app.use(async (ctx, next) => {
 app.use(logger());
 app.use(bodyParser());
 app.use(router.routes());
-app.use(serve('./dist'));
 addClientRoute(app);
+app.use(serve('./dist'));
 
 app.listen(3000, () => {
   console.log('Listening on port 3000!');

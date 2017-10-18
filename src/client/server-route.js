@@ -2,6 +2,7 @@
 // Note. This file is not added to nodemon watch list.
 // In order for development build to work, run the production build once
 // to copy the assets.
+const router = require('koa-router')();
 
 const PROD = process.env.NODE_ENV === 'production';
 const DATA = {
@@ -27,6 +28,10 @@ module.exports = (app) => {
       stats: { colors: true },
     });
     const hot = hotMiddleware(compiler);
+    const hotServer = webpackHotServerMiddleware(compiler, {
+      createHandler: webpackHotServerMiddleware.createKoaHandler,
+      serverRendererOptions: DATA,
+    });
 
     app.use(async (ctx, next) => {
       await new Promise((resolve) => {
@@ -54,10 +59,9 @@ module.exports = (app) => {
     //   }, next);
     // });
 
-    app.use(webpackHotServerMiddleware(compiler, {
-      createHandler: webpackHotServerMiddleware.createKoaHandler,
-      serverRendererOptions: DATA,
-    }));
+    // Render view from the server bundle
+    router.get('/', hotServer);
+    app.use(router.routes());
   } else {
     // Check if server bundle is present
     let serverRenderer;
@@ -70,7 +74,6 @@ module.exports = (app) => {
     }
 
     // Render view from the server bundle
-    const router = require('koa-router')();
     router.get('/', serverRenderer(DATA));
     app.use(router.routes());
   }
