@@ -4,6 +4,12 @@
 // to copy the assets.
 
 const PROD = process.env.NODE_ENV === 'production';
+const DATA = {
+  user: {
+    login: 'samuel_johnson',
+    name: 'Samuel Johnson',
+  },
+};
 
 module.exports = (app) => {
   if (!PROD) {
@@ -50,6 +56,7 @@ module.exports = (app) => {
 
     app.use(webpackHotServerMiddleware(compiler, {
       createHandler: webpackHotServerMiddleware.createKoaHandler,
+      serverRendererOptions: DATA,
     }));
   } else {
     // Check if server bundle is present
@@ -64,7 +71,7 @@ module.exports = (app) => {
 
     // Render view from the server bundle
     const router = require('koa-router')();
-    router.get('/', serverRenderer());
+    router.get('/', serverRenderer(DATA));
     app.use(router.routes());
   }
 };

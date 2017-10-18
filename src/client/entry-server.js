@@ -3,18 +3,13 @@ import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { extractCritical } from 'emotion-server';
 import { App } from './components';
 
-const DATA = {
-  // user: {
-  //   login: 'samuel_johnson',
-  //   name: 'Samuel Johnson',
-  // },
-};
+export default function serverRenderer(options) {
+  const appData = { user: options.user };
 
-export default function serverRenderer() {
   return (ctx) => {
-    const app = renderToString(<App data={DATA} />);
+    const app = renderToString(<App data={appData} />);
     const { html, ids, css } = extractCritical(app);
-    const viewData = `window.__data=${JSON.stringify({ ids, DATA })};`;
+    const viewData = `window.__data=${JSON.stringify({ ids, appData })};`;
 
     const template = (
       <html lang="ru">
