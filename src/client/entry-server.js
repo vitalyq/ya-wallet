@@ -4,7 +4,10 @@ import { extractCritical } from 'emotion-server';
 import { App } from './components';
 
 export default function serverRenderer(options) {
-  const appData = { user: options.user };
+  // Do not pass client and server stats to the view.
+  const appData = Object.assign({}, options);
+  delete appData.clientStats;
+  delete appData.serverStats;
 
   return (ctx) => {
     const app = renderToString(<App data={appData} />);
