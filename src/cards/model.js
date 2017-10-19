@@ -46,14 +46,15 @@ const cardModel = {
     await data.save(newCards);
   },
 
-  async charge(id, amount) {
+  async changeBalance(id, delta) {
     const cards = await data.get();
     const card = cards.find(c => c.id === id);
     if (!card) {
       throw createError(400, 'Card not found');
     }
 
-    const newBalance = card.balance - amount;
+    // Handle float errors
+    const newBalance = ((card.balance * 100) + (delta * 100)) / 100;
     if (newBalance < 0) {
       throw createError(400, 'Not enough funds');
     }
