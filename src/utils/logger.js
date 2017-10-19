@@ -22,5 +22,8 @@ const config = {
   },
 };
 
+// Set up logger
 log4js.configure(config);
-module.exports = log4js.getLogger(CATEGORY);
+const logger = log4js.getLogger(CATEGORY);
+
+module.exports = logger;
