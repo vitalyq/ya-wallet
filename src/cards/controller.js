@@ -1,25 +1,23 @@
-const { checkCardNumber, checkCardId } = require('./validator');
-const { getCards, createCard, deleteCard } = require('./model');
+const cardModel = require('./model');
+const cardSchema = require('./schema');
 
-module.exports = {
-  // Get list of all cards in JSON format
-  async getCards(ctx) {
-    ctx.body = await getCards();
+const cardsController = {
+  async getAll(ctx) {
+    ctx.body = await cardModel.getAll();
   },
 
-  // Add new card
-  // Parses urlencoded or JSON body fields: cardNumber, balance
-  async createCard(ctx) {
-    let card = checkCardNumber(ctx.request.body);
-    card = await createCard(card);
+  async create(ctx) {
+    let card = await cardSchema.card.validate(ctx.request.body);
+    card = await cardModel.create(card);
     ctx.status = 201;
     ctx.body = card;
   },
 
-  // Delete card by ID
-  async deleteCard(ctx) {
-    const id = checkCardId(ctx.params.id);
-    await deleteCard(id);
+  async delete(ctx) {
+    const id = await cardSchema.cardId.validate(ctx.params.id);
+    await cardModel.delete(id);
     ctx.status = 200;
   },
 };
+
+module.exports = cardsController;

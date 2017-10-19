@@ -1,21 +1,25 @@
-const { chargeCard } = require('../cards/model');
-const { checkCardId } = require('../cards/validator');
-const { createTransaction } = require('../transactions/model');
+const cardModel = require('../cards/model');
+const transModel = require('../transactions/model');
+const cardSchema = require('../cards/schema');
+const operationSchema = require('./schema');
 
-module.exports = {
-  async payForCell(ctx) {
-    const amount = Number(ctx.request.body.amount);
-    const id = checkCardId(ctx.params.id);
-    const trans = {
+const operationsController = {
+  async cardToMobile(ctx) {
+    const id = cardSchema.cardId.validate(ctx.params.id);
+    const amount = operationSchema.amount.validate(ctx.request.body.amount);
+    let trans = {
       cardId: id,
-      type: 'paymentMobile',
+      type: 'cardToMobile',
       data: '9007771100',
       time: new Date().toISOString(),
       sum: amount,
     };
 
-    await chargeCard(id, amount);
-    await createTransaction(trans);
+    await cardModel.charge(id, amount);
+    trans = await transModel.create(trans);
     ctx.status = 201;
+    ctx.body = trans;
   },
 };
+
+module.exports = operationsController;

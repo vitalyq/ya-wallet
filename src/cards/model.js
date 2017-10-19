@@ -2,15 +2,15 @@ const createError = require('http-errors');
 const path = require('path');
 const loader = require('../utils/dataLoader');
 
-const { getData, saveData, getNextId } = loader(path.join(__dirname, 'data.json'));
+const data = loader(path.join(__dirname, 'data.json'));
 
-module.exports = {
-  async getCards() {
-    return getData();
+const cardModel = {
+  async getAll() {
+    return data.get();
   },
 
-  async getCard(id) {
-    const cards = await getData();
+  async get(id) {
+    const cards = await data.get();
     const card = cards.find(c => c.id === id);
     if (!card) {
       throw createError(400, 'Card not found');
@@ -19,24 +19,35 @@ module.exports = {
     return card;
   },
 
-  async createCard(card) {
-    const cards = await getData();
+  async create(card) {
+    const cards = await data.get();
     const cardExists = cards.some(c => (
       c.cardNumber === card.cardNumber
     ));
     if (cardExists) {
-      throw createError(400, 'Card exists');
+      throw createError(400, 'Card already exists');
     }
 
-    card.id = getNextId(cards);
+    card.id = data.getNextId(cards);
     cards.push(card);
-    await saveData(cards);
+    await data.save(cards);
 
     return card;
   },
 
-  async chargeCard(id, amount) {
-    const cards = await getData();
+  async delete(id) {
+    const cards = await data.get();
+    const newCards = cards.filter(card => card.id !== id);
+
+    if (cards.length === newCards.length) {
+      throw createError(404, 'Card not found');
+    }
+
+    await data.save(newCards);
+  },
+
+  async charge(id, amount) {
+    const cards = await data.get();
     const card = cards.find(c => c.id === id);
     if (!card) {
       throw createError(400, 'Card not found');
@@ -48,17 +59,8 @@ module.exports = {
     }
 
     card.balance = newBalance;
-    await saveData(cards);
-  },
-
-  async deleteCard(id) {
-    const cards = await getData();
-    const newCards = cards.filter(card => card.id !== id);
-
-    if (cards.length === newCards.length) {
-      throw createError(404, 'Card not found');
-    }
-
-    await saveData(newCards);
+    await data.save(cards);
   },
 };
+
+module.exports = cardModel;

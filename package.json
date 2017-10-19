@@ -10,7 +10,7 @@
     "build": "cross-env NODE_ENV=production webpack",
     "start": "cross-env NODE_ENV=production node src",
     "dev": "nodemon --watch src --ignore client/ -L src",
-    "test": "eslint src --ignore-pattern \"/src/vendor/*\""
+    "test": "eslint src"
   },
   "dependencies": {
     "antd": "^2.13.4",
@@ -19,6 +19,7 @@
     "emotion": "^8.0.5",
     "emotion-server": "^8.0.5",
     "http-errors": "^1.6.2",
+    "joi": "^13.0.0",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.2.1",

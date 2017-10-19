@@ -1,26 +1,23 @@
-const createError = require('http-errors');
 const path = require('path');
 const loader = require('../utils/dataLoader');
 
-const { getData, saveData, getNextId } = loader(path.join(__dirname, 'data.json'));
+const data = loader(path.join(__dirname, 'data.json'));
 
-module.exports = {
-  async getTransactions(cardId) {
-    const transactions = await getData();
+const transactionModel = {
+  async getAll(cardId) {
+    const transactions = await data.get();
     return transactions.filter(t => t.cardId === cardId);
   },
 
-  async createTransaction(trans) {
-    const transactions = await getData();
+  async create(trans) {
+    const transactions = await data.get();
 
-    trans.id = getNextId(transactions);
+    trans.id = data.getNextId(transactions);
     transactions.push(trans);
-    await saveData(transactions);
+    await data.save(transactions);
 
     return trans;
   },
-
-  deleteTransaction() {
-    throw createError(400, 'Impossible to delete transaction');
-  },
 };
+
+module.exports = transactionModel;

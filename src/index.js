@@ -5,19 +5,18 @@ const serve = require('koa-static');
 const logger = require('./utils/logger');
 const koaLogger = require('./utils/koaLogger');
 const addClientRoute = require('./client/server-route');
-const { getCards, createCard, deleteCard } = require('./cards/controller');
-const { getTransactions, createTransaction } = require('./transactions/controller');
-const { payForCell } = require('./operations/controller');
+const cardsController = require('./cards/controller');
+const transactionsController = require('./transactions/controller');
+const operationsController = require('./operations/controller');
 
 const app = new Koa();
 
 // Routes
-router.get('/cards', getCards);
-router.post('/cards', createCard);
-router.delete('/cards/:id', deleteCard);
-router.get('/cards/:id/transactions', getTransactions);
-router.post('/cards/:id/transactions', createTransaction);
-router.post('/cards/:id/pay', payForCell);
+router.get('/cards', cardsController.getAll);
+router.post('/cards', cardsController.create);
+router.delete('/cards/:id', cardsController.delete);
+router.get('/cards/:id/transactions', transactionsController.getAll);
+router.post('/cards/:id/pay', operationsController.cardToMobile);
 
 // Middlewares
 app.use(koaLogger);

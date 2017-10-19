@@ -6,13 +6,13 @@ const writeFile = promisify(fs.writeFile);
 
 module.exports = dataFile => ({
   // Get data from the file
-  async getData() {
+  async get() {
     const data = await readFile(dataFile);
     return JSON.parse(data);
   },
 
   // Save data to the file
-  async saveData(data) {
+  async save(data) {
     await writeFile(
       dataFile,
       JSON.stringify(data, null, 2),
