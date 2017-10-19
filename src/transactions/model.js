@@ -1,6 +1,6 @@
+const createError = require('http-errors');
 const path = require('path');
 const loader = require('../utils/dataLoader');
-const koaError = require('../utils/koaError');
 
 const { getData, saveData, getNextId } = loader(path.join(__dirname, 'data.json'));
 
@@ -21,6 +21,6 @@ module.exports = {
   },
 
   deleteTransaction() {
-    throw koaError(400, 'Impossible to delete transaction');
+    throw createError(400, 'Impossible to delete transaction');
   },
 };

@@ -1,4 +1,4 @@
-const koaError = require('../utils/koaError');
+const createError = require('http-errors');
 
 const allowedTypes = [
   'paymentMobile',
@@ -11,7 +11,7 @@ module.exports = {
     if (typeof trans !== 'object' ||
       isNaN(trans.cardId) ||
       !allowedTypes.includes(trans.type)) {
-      throw koaError(400);
+      throw createError(400);
     }
     trans.cardId = Number(trans.cardId);
     return trans;

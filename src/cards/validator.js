@@ -1,12 +1,12 @@
+const createError = require('http-errors');
 const luhn = require('../vendor/luhn-algorithm');
-const koaError = require('../utils/koaError');
 
 module.exports = {
   checkCardNumber(card) {
     if (typeof card !== 'object' ||
       !luhn(card.cardNumber) ||
       isNaN(card.balance)) {
-      throw koaError(400);
+      throw createError(400);
     }
     card.balance = Number(card.balance);
     return card;
@@ -14,7 +14,7 @@ module.exports = {
 
   checkCardId(id) {
     if (isNaN(id)) {
-      throw koaError(400);
+      throw createError(400);
     }
     return Number(id);
   },

@@ -18,6 +18,7 @@
     "card-info": "git+https://github.com/iniel/card-info.git",
     "emotion": "^8.0.5",
     "emotion-server": "^8.0.5",
+    "http-errors": "^1.6.2",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.2.1",
