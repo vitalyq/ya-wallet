@@ -21,6 +21,23 @@ const operationsController = {
     ctx.body = trans;
   },
 
+  async mobileToCard(ctx) {
+    const id = await cardSchema.cardId.validate(ctx.params.id);
+    const amount = await operationSchema.amount.validate(ctx.request.body.amount);
+    let trans = {
+      cardId: id,
+      type: 'fromMobile',
+      data: { phoneNumber: '9007771100' },
+      time: new Date().toISOString(),
+      sum: amount,
+    };
+
+    await cardModel.changeBalance(id, amount);
+    trans = await transModel.create(trans);
+    ctx.status = 201;
+    ctx.body = trans;
+  },
+
   async cardToCard(ctx) {
     const idFrom = await cardSchema.cardId.validate(ctx.params.id);
     const idTo = await cardSchema.cardId.validate(ctx.request.body.receiverCardId);

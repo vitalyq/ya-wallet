@@ -17,6 +17,7 @@ router.post('/cards', cardsController.create);
 router.delete('/cards/:id', cardsController.delete);
 router.get('/cards/:id/transactions', transactionsController.getAll);
 router.post('/cards/:id/pay', operationsController.cardToMobile);
+router.post('/cards/:id/fill', operationsController.mobileToCard);
 router.post('/cards/:id/transfer', operationsController.cardToCard);
 
 // Middlewares
