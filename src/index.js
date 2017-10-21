@@ -4,7 +4,7 @@ const router = require('koa-router')();
 const serve = require('koa-static');
 const logger = require('./utils/logger');
 const koaLogger = require('./utils/koaLogger');
-const addClientRoute = require('./client/server-route');
+const setupClientRoute = require('./client/route-setup');
 const cardsController = require('./cards/controller');
 const transactionsController = require('./transactions/controller');
 const operationsController = require('./operations/controller');
@@ -24,7 +24,7 @@ router.post('/cards/:id/transfer', operationsController.cardToCard);
 app.use(koaLogger);
 app.use(bodyParser());
 app.use(router.routes());
-addClientRoute(app);
+setupClientRoute(app);
 app.use(serve('./dist'));
 
 // Error listener
