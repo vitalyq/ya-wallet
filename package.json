@@ -34,7 +34,7 @@
     "react-emotion": "^8.0.5",
     "react-hot-loader": "^3.0.0",
     "webpack": "^3.6.0",
-    "webpack-hot-server-middleware": "github:60frames/webpack-hot-server-middleware"
+    "webpack-hot-server-middleware": "^0.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.4",
