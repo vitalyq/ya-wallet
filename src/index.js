@@ -4,6 +4,7 @@ const router = require('koa-router')();
 const serve = require('koa-static');
 const logger = require('./utils/logger');
 const koaLogger = require('./utils/koaLogger');
+const port = require('./config').server.port;
 const setupClientRoute = require('./client/route-setup');
 const cardsController = require('./cards/controller');
 const transactionsController = require('./transactions/controller');
@@ -33,8 +34,8 @@ app.on('error', (err, ctx) => {
   logger.error('Server error', err, ctx);
 });
 
-app.listen(3000, () => {
-  logger.info('Started, listening port 3000!');
+app.listen(port, () => {
+  logger.info(`Started, listening port ${port}!`);
 });
 
 // Export the app

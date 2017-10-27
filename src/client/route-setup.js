@@ -1,10 +1,9 @@
 /* eslint global-require: "off", import/no-unresolved: "off" */
 // In order for development build to work, run the production build once
 // to copy the assets.
+const { isProduction, renderClient } = require('../config');
 const router = require('koa-router')();
 
-const PROD = process.env.NODE_ENV === 'production';
-const RENDER_CLIENT = process.env.NO_CLIENT !== '1';
 const DATA = {
   user: {
     login: 'samuel_johnson',
@@ -13,11 +12,11 @@ const DATA = {
 };
 
 module.exports = (app) => {
-  if (PROD) {
+  if (isProduction) {
     const serverRenderer = require('../../dist/server').default;
     router.get('/', serverRenderer(DATA));
     app.use(router.routes());
-  } else if (RENDER_CLIENT) {
+  } else if (renderClient) {
     const webpack = require('webpack');
     const koaWebpack = require('koa-webpack');
     const hotServerMiddleware = require('webpack-hot-server-middleware');
