@@ -4,13 +4,16 @@ const router = require('koa-router')();
 const serve = require('koa-static');
 const logger = require('./utils/logger');
 const koaLogger = require('./utils/koaLogger');
-const port = require('./config').server.port;
+const config = require('./config');
+const db = require('./utils/db');
 const setupClientRoute = require('./client/route-setup');
 const cardsController = require('./cards/controller');
 const transactionsController = require('./transactions/controller');
 const operationsController = require('./operations/controller');
 
 const app = new Koa();
+const dbUrl = config.database.url;
+const port = config.server.port;
 
 // Routes
 router.get('/cards', cardsController.getAll);
@@ -34,9 +37,13 @@ app.on('error', (err, ctx) => {
   logger.error('Server error', err, ctx);
 });
 
-app.listen(port, () => {
-  logger.info(`Started, listening port ${port}!`);
-});
+db.connect(dbUrl)
+  .catch(err => logger.error('Database error', err.stack))
+  .then(() => {
+    app.listen(port, () => {
+      logger.info(`Started on port ${port}!`);
+    });
+  });
 
 // Export the app
 module.exports = app;
