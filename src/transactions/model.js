@@ -1,5 +1,9 @@
 const db = require('../utils/db');
 
+// Collection indexes
+db.indexes.transactions = [{
+  key: { cardId: 1 },
+}];
 const transactions = () => db().collection('transactions');
 
 const transactionModel = {

@@ -1,7 +1,7 @@
 const createError = require('http-errors');
 const db = require('../utils/db');
 
-// Define indexes for the collection
+// Collection indexes
 db.indexes.cards = [{
   key: { cardNumber: 1 },
   unique: true,
