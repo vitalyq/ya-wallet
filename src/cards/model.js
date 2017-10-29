@@ -1,17 +1,21 @@
 const createError = require('http-errors');
-const path = require('path');
-const loader = require('../utils/dataLoader');
+const ObjectID = require('mongodb').ObjectID;
+const db = require('../utils/db');
 
-const data = loader(path.join(__dirname, 'data.json'));
+// Define indexes for the collection
+db.indexes.cards = [{
+  key: { cardNumber: 1 },
+  unique: true,
+}];
+const cards = () => db().collection('cards');
 
 const cardModel = {
   async getAll() {
-    return data.get();
+    return cards().find().toArray();
   },
 
   async get(id) {
-    const cards = await data.get();
-    const card = cards.find(c => c.id === id);
+    const card = await cards().findOne({ _id: new ObjectID(id) });
     if (!card) {
       throw createError(400, 'Card not found');
     }
@@ -20,47 +24,34 @@ const cardModel = {
   },
 
   async create(card) {
-    const cards = await data.get();
-    const cardExists = cards.some(c => (
-      c.cardNumber === card.cardNumber
-    ));
-    if (cardExists) {
-      throw createError(400, 'Card already exists');
+    try {
+      const r = await cards().insertOne(card);
+      return r.ops[0];
+    } catch (err) {
+      throw err.code === 11000 ?
+        createError(400, 'Card already exists') :
+        err;
     }
-
-    card.id = data.getNextId(cards);
-    cards.push(card);
-    await data.save(cards);
-
-    return card;
   },
 
   async delete(id) {
-    const cards = await data.get();
-    const newCards = cards.filter(card => card.id !== id);
-
-    if (cards.length === newCards.length) {
+    const r = await cards().deleteOne({ _id: new ObjectID(id) });
+    if (!r.deletedCount) {
       throw createError(404, 'Card not found');
     }
-
-    await data.save(newCards);
   },
 
   async changeBalance(id, delta) {
-    const cards = await data.get();
-    const card = cards.find(c => c.id === id);
-    if (!card) {
-      throw createError(400, 'Card not found');
+    const minBalance = delta < 0 ? Math.abs(delta) : 0;
+    const r = await cards().updateOne({
+      _id: new ObjectID(id),
+      balance: { $gte: minBalance },
+    }, {
+      $inc: { balance: delta },
+    });
+    if (!r.modifiedCount) {
+      throw createError(400, 'Card not found or not enough funds');
     }
-
-    // Handle float errors
-    const newBalance = ((card.balance * 100) + (delta * 100)) / 100;
-    if (newBalance < 0) {
-      throw createError(400, 'Not enough funds');
-    }
-
-    card.balance = newBalance;
-    await data.save(cards);
   },
 };
 

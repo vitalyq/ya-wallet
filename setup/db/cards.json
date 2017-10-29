@@ -1,0 +1,44 @@
+[
+  {
+    "_id": {
+      "$oid": "59f1b35532c12a7e01dc5afb"
+    },
+    "cardNumber": "5469257385340236",
+    "balance": 231310
+  },
+  {
+    "_id": {
+      "$oid": "59f1b35532c12a7e01dc5afc"
+    },
+    "cardNumber": "5500642176834862",
+    "balance": 2
+  },
+  {
+    "_id": {
+      "$oid": "59f1b35532c12a7e01dc5afd"
+    },
+    "cardNumber": "676230000000000",
+    "balance": 0
+  },
+  {
+    "_id": {
+      "$oid": "59f1b35532c12a7e01dc5afe"
+    },
+    "cardNumber": "437784000000000",
+    "balance": 4545
+  },
+  {
+    "_id": {
+      "$oid": "59f1b35532c12a7e01dc5aff"
+    },
+    "cardNumber": "405870000000000",
+    "balance": 700
+  },
+  {
+    "_id": {
+      "$oid": "59f1b35532c12a7e01dc5b00"
+    },
+    "cardNumber": "676803000000000",
+    "balance": 120
+  }
+]

@@ -1,22 +1,18 @@
-const path = require('path');
-const loader = require('../utils/dataLoader');
+const ObjectID = require('mongodb').ObjectID;
+const db = require('../utils/db');
 
-const data = loader(path.join(__dirname, 'data.json'));
+const transactions = () => db().collection('transactions');
 
 const transactionModel = {
   async getAll(cardId) {
-    const transactions = await data.get();
-    return transactions.filter(t => t.cardId === cardId);
+    return transactions()
+      .find({ cardId: new ObjectID(cardId) })
+      .toArray();
   },
 
   async create(trans) {
-    const transactions = await data.get();
-
-    trans.id = data.getNextId(transactions);
-    transactions.push(trans);
-    await data.save(transactions);
-
-    return trans;
+    const r = await transactions().insertOne(trans);
+    return r.ops[0];
   },
 };
 

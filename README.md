@@ -17,6 +17,15 @@ npm start
 
 ## Develop
 
+Set up a database:
+
+```
+mongoimport --db wallet --file setup/db/cards.json --jsonArray
+mongoimport --db wallet --file setup/db/transactions.json --jsonArray
+```
+
+Run the server:
+
 ```
 npm run dev
 ```

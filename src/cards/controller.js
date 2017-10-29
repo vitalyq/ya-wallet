@@ -1,3 +1,5 @@
+const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi);
 const cardModel = require('./model');
 const cardSchema = require('./schema');
 
@@ -7,14 +9,13 @@ const cardsController = {
   },
 
   async create(ctx) {
-    let card = await cardSchema.card.validate(ctx.request.body);
-    card = await cardModel.create(card);
+    const card = await cardSchema.validate(ctx.request.body);
+    ctx.body = await cardModel.create(card);
     ctx.status = 201;
-    ctx.body = card;
   },
 
   async delete(ctx) {
-    const id = await cardSchema.cardId.validate(ctx.params.id);
+    const id = await Joi.objectId().validate(ctx.params.id);
     await cardModel.delete(id);
     ctx.status = 200;
   },
