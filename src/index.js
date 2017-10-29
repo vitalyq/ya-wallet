@@ -2,10 +2,11 @@ const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const router = require('koa-router')();
 const serve = require('koa-static');
+const db = require('./utils/db');
+const config = require('./config');
 const logger = require('./utils/logger');
 const koaLogger = require('./utils/koaLogger');
-const config = require('./config');
-const db = require('./utils/db');
+const koaJoi = require('./utils/joi').middleware;
 const setupClientRoute = require('./client/route-setup');
 const cardsController = require('./cards/controller');
 const transactionsController = require('./transactions/controller');
@@ -26,6 +27,7 @@ router.post('/cards/:id/transfer', operationsController.cardToCard);
 
 // Middlewares
 app.use(koaLogger);
+app.use(koaJoi);
 app.use(bodyParser());
 app.use(router.routes());
 setupClientRoute(app);
