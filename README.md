@@ -8,7 +8,14 @@ cd ya-wallet
 npm install
 ```
 
-To run the app in production:
+MongoDB instance is required to run the app. Load the sample data:
+
+```
+mongoimport --db wallet --file setup/db/cards.json --jsonArray
+mongoimport --db wallet --file setup/db/transactions.json --jsonArray
+```
+
+Run the app in production:
 
 ```
 npm run build
@@ -16,13 +23,6 @@ npm start
 ```
 
 ## Develop
-
-Set up a database:
-
-```
-mongoimport --db wallet --file setup/db/cards.json --jsonArray
-mongoimport --db wallet --file setup/db/transactions.json --jsonArray
-```
 
 Run the server:
 

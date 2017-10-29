@@ -6,8 +6,10 @@
     "cardId": {
       "$oid": "59f1b35532c12a7e01dc5afb"
     },
-    "type": "prepaidCard",
-    "data": "220003000000003",
+    "type": "fromMobile",
+    "data": {
+      "phoneNumber": "9007771100"
+    },
     "time": "2017-10-02T12:28:31+03:00",
     "sum": 2345
   },
@@ -18,8 +20,10 @@
     "cardId": {
       "$oid": "59f1b35532c12a7e01dc5afb"
     },
-    "type": "paymentMobile",
-    "data": "+7(921)3333333",
+    "type": "toMobile",
+    "data": {
+      "phoneNumber": "9007771100"
+    },
     "time": "2017-08-8T06:28:31+03:00",
     "sum": -25
   },
@@ -30,8 +34,10 @@
     "cardId": {
       "$oid": "59f1b35532c12a7e01dc5afb"
     },
-    "type": "paymentMobile",
-    "data": "+7(921)3333333",
+    "type": "toMobile",
+    "data": {
+      "phoneNumber": "9007771100"
+    },
     "time": "2017-10-02T11:28:31+03:00",
     "sum": -25
   },
@@ -42,8 +48,10 @@
     "cardId": {
       "$oid": "59f1b35532c12a7e01dc5afb"
     },
-    "type": "card2Card",
-    "data": "220003000000005",
+    "type": "fromCard",
+    "data": {
+      "cardNumber": "5500642176834862"
+    },
     "time": "2017-10-02T13:29:31+03:00",
     "sum": -174
   },
@@ -52,24 +60,14 @@
       "$oid": "59f1ba7f32c12a7e01dc5bdf"
     },
     "cardId": {
-      "$oid": "59f1b35532c12a7e01dc5afb"
+      "$oid": "59f1b35532c12a7e01dc5afc"
     },
-    "type": "card2Card",
-    "data": "220003000000005",
+    "type": "toCard",
+    "data": {
+      "cardNumber": "5469257385340236"
+    },
     "time": "2017-10-02T13:28:31+03:00",
-    "sum": -174
-  },
-  {
-    "_id": {
-      "$oid": "59f1ba7f32c12a7e01dc5be0"
-    },
-    "cardId": {
-      "$oid": "59f1b35532c12a7e01dc5afb"
-    },
-    "type": "card2Card",
-    "data": "220003000000005",
-    "time": "2017-10-02T13:28:35+03:00",
-    "sum": -174
+    "sum": 174
   },
   {
     "_id": {
@@ -78,8 +76,10 @@
     "cardId": {
       "$oid": "59f1b35532c12a7e01dc5afc"
     },
-    "type": "prepaidCard",
-    "data": "220003000000003",
+    "type": "fromMobile",
+    "data": {
+      "phoneNumber": "9007771100"
+    },
     "time": "2017-10-02T13:28:31+03:00",
     "sum": 2345
   },
@@ -90,8 +90,10 @@
     "cardId": {
       "$oid": "59f1b35532c12a7e01dc5afc"
     },
-    "type": "paymentMobile",
-    "data": "+7(921)3333333",
+    "type": "toMobile",
+    "data": {
+      "phoneNumber": "9007771100"
+    },
     "time": "2017-10-02T13:28:31+03:00",
     "sum": -25
   },
@@ -102,8 +104,10 @@
     "cardId": {
       "$oid": "59f1b35532c12a7e01dc5afc"
     },
-    "type": "paymentMobile",
-    "data": "+7(921)3333333",
+    "type": "toMobile",
+    "data": {
+      "phoneNumber": "9007771100"
+    },
     "time": "2017-10-02T13:28:31+03:00",
     "sum": -25
   },
@@ -114,8 +118,10 @@
     "cardId": {
       "$oid": "59f1b35532c12a7e01dc5afc"
     },
-    "type": "prepaidCard",
-    "data": "220003000000003",
+    "type": "fromMobile",
+    "data": {
+      "phoneNumber": "9007771100"
+    },
     "time": "2017-10-02T13:28:31+03:00",
     "sum": 2345
   },
@@ -126,8 +132,10 @@
     "cardId": {
       "$oid": "59f1b35532c12a7e01dc5afd"
     },
-    "type": "prepaidCard",
-    "data": "220003000000003",
+    "type": "fromMobile",
+    "data": {
+      "phoneNumber": "9007771100"
+    },
     "time": "2017-10-02T13:28:31+03:00",
     "sum": 2345
   },
@@ -138,22 +146,12 @@
     "cardId": {
       "$oid": "59f1b35532c12a7e01dc5afd"
     },
-    "type": "paymentMobile",
-    "data": "+7(921)3333333",
+    "type": "toMobile",
+    "data": {
+      "phoneNumber": "9007771100"
+    },
     "time": "2017-10-02T13:28:31+03:00",
     "sum": -25
-  },
-  {
-    "_id": {
-      "$oid": "59f1ba7f32c12a7e01dc5be7"
-    },
-    "cardId": {
-      "$oid": "59f1b35532c12a7e01dc5afc"
-    },
-    "type": "card2Card",
-    "data": "220003000000005",
-    "time": "2017-10-02T13:28:31+03:00",
-    "sum": -174
   },
   {
     "_id": {
@@ -162,8 +160,10 @@
     "cardId": {
       "$oid": "59f1b35532c12a7e01dc5afe"
     },
-    "type": "prepaidCard",
-    "data": "220003000000003",
+    "type": "fromMobile",
+    "data": {
+      "phoneNumber": "9007771100"
+    },
     "time": "2017-10-02T13:28:31+03:00",
     "sum": 2345
   },
@@ -174,8 +174,10 @@
     "cardId": {
       "$oid": "59f1b35532c12a7e01dc5afe"
     },
-    "type": "paymentMobile",
-    "data": "+7(921)3333333",
+    "type": "toMobile",
+    "data": {
+      "phoneNumber": "9007771100"
+    },
     "time": "2017-10-02T13:28:31+03:00",
     "sum": -25
   },
@@ -186,34 +188,26 @@
     "cardId": {
       "$oid": "59f1b35532c12a7e01dc5afc"
     },
-    "type": "card2Card",
-    "data": "220003000000005",
+    "type": "fromCard",
+    "data": {
+      "cardNumber": "5469257385340236"
+    },
     "time": "2017-10-02T13:28:31+03:00",
-    "sum": -174
+    "sum": -284
   },
   {
     "_id": {
       "$oid": "59f1ba7f32c12a7e01dc5beb"
     },
     "cardId": {
-      "$oid": "59f1b35532c12a7e01dc5afe"
+      "$oid": "59f1b35532c12a7e01dc5afb"
     },
-    "type": "card2Card",
-    "data": "220003000000005",
+    "type": "toCard",
+    "data": {
+      "cardNumber": "5500642176834862"
+    },
     "time": "2017-10-02T13:28:31+03:00",
-    "sum": -174
-  },
-  {
-    "_id": {
-      "$oid": "59f1ba7f32c12a7e01dc5bec"
-    },
-    "cardId": {
-      "$oid": "59f1b35532c12a7e01dc5afe"
-    },
-    "type": "card2Card",
-    "data": "220003000000005",
-    "time": "2017-10-02T13:28:31+03:00",
-    "sum": -174
+    "sum": 284
   },
   {
     "_id": {
@@ -222,8 +216,10 @@
     "cardId": {
       "$oid": "59f1b35532c12a7e01dc5afe"
     },
-    "type": "prepaidCard",
-    "data": "220003000000003",
+    "type": "fromMobile",
+    "data": {
+      "phoneNumber": "9007771100"
+    },
     "time": "2017-10-02T13:28:31+03:00",
     "sum": 2345
   },
@@ -234,8 +230,10 @@
     "cardId": {
       "$oid": "59f1b35532c12a7e01dc5afe"
     },
-    "type": "paymentMobile",
-    "data": "+7(921)3333333",
+    "type": "toMobile",
+    "data": {
+      "phoneNumber": "9007771100"
+    },
     "time": "2017-10-02T13:28:31+03:00",
     "sum": -25
   },
@@ -246,8 +244,10 @@
     "cardId": {
       "$oid": "59f1b35532c12a7e01dc5afb"
     },
-    "type": "prepaidCard",
-    "data": "220003000000003",
+    "type": "fromMobile",
+    "data": {
+      "phoneNumber": "9007771100"
+    },
     "time": "2017-08-9T05:28:31+03:00",
     "sum": 2345
   }
