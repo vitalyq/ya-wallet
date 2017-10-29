@@ -1,0 +1,238 @@
+{
+	"info": {
+		"name": "Wallet",
+		"description": "API call templates for https://github.com/vitalyq/ya-wallet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cards",
+			"description": "",
+			"item": [
+				{
+					"name": "Get All Cards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:3000/cards",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cards"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cardNumber\": \"5590521042140780\",\n  \"balance\": 43\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/cards",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cards"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Card",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:3000/cards/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cards",
+								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"description": "",
+			"item": [
+				{
+					"name": "Get Card Transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:3000/cards/59f1b35532c12a7e01dc5afd/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cards",
+								"59f1b35532c12a7e01dc5afd",
+								"transactions"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Operations",
+			"description": "",
+			"item": [
+				{
+					"name": "Card to Mobile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "amount",
+									"value": "100",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/cards/59f1b35532c12a7e01dc5afb/pay",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cards",
+								"59f1b35532c12a7e01dc5afb",
+								"pay"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Mobile to Card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "amount",
+									"value": "100",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/cards/59f1b35532c12a7e01dc5afb/fill",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cards",
+								"59f1b35532c12a7e01dc5afb",
+								"fill"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Card to Card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "amount",
+									"value": "100",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "receiverCardId",
+									"value": "59f1b35532c12a7e01dc5afc",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/cards/59f1b35532c12a7e01dc5afb/transfer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cards",
+								"59f1b35532c12a7e01dc5afb",
+								"transfer"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
