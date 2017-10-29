@@ -38,7 +38,10 @@ app.on('error', (err, ctx) => {
 });
 
 db.connect(dbUrl)
-  .catch(err => logger.error('Database error', err.stack))
+  .catch((err) => {
+    logger.error('Database error', err.stack);
+    process.exit(1);
+  })
   .then(() => {
     app.listen(port, () => {
       logger.info(`Started on port ${port}!`);

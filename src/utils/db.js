@@ -4,9 +4,24 @@ const { MongoClient } = require('mongodb');
 
 let dbCache;
 
+// Retrieve cached Db instance.
 const getDb = () => dbCache;
-getDb.connect = async (url) => {
-  dbCache = await MongoClient.connect(url);
+
+// Indexes to be created on connect.
+// Keys are collection names, values are indexSpecs.
+getDb.indexes = {};
+
+// Connect to MongoDB and cache the Db instance.
+getDb.connect = async (url, options) => {
+  dbCache = await MongoClient.connect(url, options);
+
+  // Create indexes if required.
+  const indexPormises = Object.entries(getDb.indexes)
+    .map(([key, value]) => (
+      dbCache.collection(key).createIndexes(value)
+    ));
+  await Promise.all(indexPormises);
+
   return dbCache;
 };
 
