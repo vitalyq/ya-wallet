@@ -1,5 +1,4 @@
-const Joi = require('joi');
-Joi.objectId = require('joi-objectid')(Joi);
+const Joi = require('../utils/joi');
 const transactionModel = require('./model');
 
 const transactionsController = {

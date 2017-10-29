@@ -1,13 +1,10 @@
-const ObjectID = require('mongodb').ObjectID;
 const db = require('../utils/db');
 
 const transactions = () => db().collection('transactions');
 
 const transactionModel = {
   async getAll(cardId) {
-    return transactions()
-      .find({ cardId: new ObjectID(cardId) })
-      .toArray();
+    return transactions().find({ cardId }).toArray();
   },
 
   async create(trans) {

@@ -1,5 +1,4 @@
 const createError = require('http-errors');
-const ObjectID = require('mongodb').ObjectID;
 const db = require('../utils/db');
 
 // Define indexes for the collection
@@ -15,7 +14,7 @@ const cardModel = {
   },
 
   async get(id) {
-    const card = await cards().findOne({ _id: new ObjectID(id) });
+    const card = await cards().findOne({ _id: id });
     if (!card) {
       throw createError(400, 'Card not found');
     }
@@ -35,7 +34,7 @@ const cardModel = {
   },
 
   async delete(id) {
-    const r = await cards().deleteOne({ _id: new ObjectID(id) });
+    const r = await cards().deleteOne({ _id: id });
     if (!r.deletedCount) {
       throw createError(404, 'Card not found');
     }
@@ -44,7 +43,7 @@ const cardModel = {
   async changeBalance(id, delta) {
     const minBalance = delta < 0 ? Math.abs(delta) : 0;
     const r = await cards().updateOne({
-      _id: new ObjectID(id),
+      _id: id,
       balance: { $gte: minBalance },
     }, {
       $inc: { balance: delta },
