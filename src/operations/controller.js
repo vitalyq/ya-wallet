@@ -9,7 +9,7 @@ const operationsController = {
       cardId: ctx.params.id,
       type: 'toMobile',
       data: { phoneNumber: '9007771100' },
-      sum: -ctx.request.body.amount,
+      sum: -ctx.request.body.sum,
     };
     trans = await transSchema.validate(trans);
 
@@ -23,7 +23,7 @@ const operationsController = {
       cardId: ctx.params.id,
       type: 'fromMobile',
       data: { phoneNumber: '9007771100' },
-      sum: ctx.request.body.amount,
+      sum: ctx.request.body.sum,
     };
     trans = await transSchema.validate(trans);
 
@@ -34,7 +34,7 @@ const operationsController = {
 
   async cardToCard(ctx) {
     const idFrom = await Joi.objectId().validate(ctx.params.id);
-    const idTo = await Joi.objectId().validate(ctx.request.body.receiverCardId);
+    const idTo = await Joi.objectId().validate(ctx.request.body.target);
     const cardFrom = await cardModel.get(idFrom);
     const cardTo = await cardModel.get(idTo);
 
@@ -42,13 +42,13 @@ const operationsController = {
       cardId: idFrom,
       type: 'toCard',
       data: { cardNumber: cardTo.cardNumber },
-      sum: -ctx.request.body.amount,
+      sum: -ctx.request.body.sum,
     };
     let transTo = {
       cardId: idTo,
       type: 'fromCard',
       data: { cardNumber: cardFrom.cardNumber },
-      sum: ctx.request.body.amount,
+      sum: ctx.request.body.sum,
     };
     transFrom = await transSchema.validate(transFrom);
     transTo = await transSchema.validate(transTo);

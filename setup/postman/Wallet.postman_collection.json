@@ -126,7 +126,7 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "amount",
+									"key": "sum",
 									"value": "100",
 									"description": "",
 									"type": "text"
@@ -164,7 +164,7 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "amount",
+									"key": "sum",
 									"value": "100",
 									"description": "",
 									"type": "text"
@@ -202,13 +202,13 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "amount",
+									"key": "sum",
 									"value": "100",
 									"description": "",
 									"type": "text"
 								},
 								{
-									"key": "receiverCardId",
+									"key": "target",
 									"value": "59f1b35532c12a7e01dc5afc",
 									"description": "",
 									"type": "text"

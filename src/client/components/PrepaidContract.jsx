@@ -134,8 +134,8 @@ class PrepaidContract extends Component {
       method: 'post',
       url: `/cards/${activeCard.id}/transfer`,
       data: {
-        receiverCardId: selectedCard.id,
-        sum,
+        target: selectedCard.id,
+        sum: Number(sum),
       },
     };
 
