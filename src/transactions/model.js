@@ -1,14 +1,10 @@
 const db = require('../utils/db');
 
-// Collection indexes
-db.indexes.transactions = [{
-  key: { cardId: 1 },
-}];
 const transactions = () => db().collection('transactions');
 
 const transactionModel = {
-  async getAll(cardId) {
-    return transactions().find({ cardId }).toArray();
+  async getAll() {
+    return transactions().find().toArray();
   },
 
   async create(trans) {

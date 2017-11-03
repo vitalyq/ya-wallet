@@ -9,8 +9,8 @@ const koaLogger = require('./utils/koaLogger');
 const koaJoi = require('./utils/joi').middleware;
 const setupClientRoute = require('./client/route-setup');
 const cardsController = require('./cards/controller');
-const transactionsController = require('./transactions/controller');
 const operationsController = require('./operations/controller');
+const transactionsController = require('./transactions/controller');
 
 const app = new Koa();
 const dbUrl = config.database.url;
@@ -20,10 +20,10 @@ const port = config.server.port;
 router.get('/cards', cardsController.getAll);
 router.post('/cards', cardsController.create);
 router.delete('/cards/:id', cardsController.delete);
-router.get('/cards/:id/transactions', transactionsController.getAll);
 router.post('/cards/:id/pay', operationsController.cardToMobile);
 router.post('/cards/:id/fill', operationsController.mobileToCard);
 router.post('/cards/:id/transfer', operationsController.cardToCard);
+router.get('/transactions', transactionsController.getAll);
 
 // Middlewares
 app.use(koaLogger);

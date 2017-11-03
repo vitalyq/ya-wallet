@@ -85,20 +85,18 @@
 			"description": "",
 			"item": [
 				{
-					"name": "Get Card Transactions",
+					"name": "Get All Transactions",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "localhost:3000/cards/59f1b35532c12a7e01dc5afd/transactions",
+							"raw": "localhost:3000/transactions",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"cards",
-								"59f1b35532c12a7e01dc5afd",
 								"transactions"
 							]
 						},
