@@ -21,7 +21,7 @@ const commonResolve = {
 
 const configClient = {
   name: 'client',
-  entry: './src/client/entry-client.js',
+  entry: './src/client/entry-client.jsx',
   output: {
     path: BUILD_PATH,
     filename: 'client.js',
@@ -46,7 +46,7 @@ const configServer = {
   name: 'server',
   target: 'node',
   externals: [nodeExternals({ whitelist: [/^antd/] })],
-  entry: './src/client/entry-server.js',
+  entry: './src/client/entry-server.jsx',
   output: {
     path: BUILD_PATH,
     filename: 'server.js',
