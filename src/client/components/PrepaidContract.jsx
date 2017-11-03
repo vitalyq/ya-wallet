@@ -132,10 +132,10 @@ class PrepaidContract extends Component {
 
     const options = {
       method: 'post',
-      url: `/cards/${activeCard.id}/transfer`,
+      url: `/cards/${selectedCard.id}/transfer`,
       data: {
-        target: selectedCard.id,
-        sum: Number(sum),
+        target: activeCard.id,
+        sum,
       },
     };
 
