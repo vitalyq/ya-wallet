@@ -79,7 +79,7 @@ class MobilePaymentContract extends Component {
     super(props);
 
     this.state = {
-      phoneNumber: '+79218908064',
+      phoneNumber: '9218908064',
       sum: 0,
       commission: 3,
     };

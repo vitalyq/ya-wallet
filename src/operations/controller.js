@@ -8,7 +8,7 @@ const operationsController = {
     let trans = {
       cardId: ctx.params.id,
       type: 'toMobile',
-      data: { phoneNumber: '9007771100' },
+      data: { phoneNumber: ctx.request.body.phoneNumber },
       sum: -ctx.request.body.sum,
     };
     trans = await transSchema.validate(trans);
@@ -22,7 +22,7 @@ const operationsController = {
     let trans = {
       cardId: ctx.params.id,
       type: 'fromMobile',
-      data: { phoneNumber: '9007771100' },
+      data: { phoneNumber: ctx.request.body.phoneNumber },
       sum: ctx.request.body.sum,
     };
     trans = await transSchema.validate(trans);
