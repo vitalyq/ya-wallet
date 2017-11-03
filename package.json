@@ -11,10 +11,11 @@
     "start": "cross-env NODE_ENV=production node src",
     "dev": "nodemon --watch src --ignore client/ -L src",
     "dev:api": "cross-env NO_CLIENT=1 npm run dev",
-    "test": "eslint src"
+    "test": "eslint src --ext js,jsx"
   },
   "dependencies": {
     "antd": "^2.13.4",
+    "axios": "^0.17.0",
     "babel-polyfill": "^7.0.0-beta.2",
     "card-info": "git+https://github.com/iniel/card-info.git",
     "eko-joi-objectid": "^1.0.2",

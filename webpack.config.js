@@ -15,6 +15,10 @@ const commonLoaders = [{
   include: path.join(__dirname, 'src'),
 }];
 
+const commonResolve = {
+  extensions: ['.js', '.jsx', '.json', '*'],
+};
+
 const configClient = {
   name: 'client',
   entry: './src/client/entry-client.js',
@@ -23,6 +27,7 @@ const configClient = {
     filename: 'client.js',
     publicPath: '/',
   },
+  resolve: commonResolve,
   module: {
     rules: commonLoaders.concat([
       {
@@ -48,6 +53,7 @@ const configServer = {
     publicPath: '/',
     libraryTarget: 'commonjs2',
   },
+  resolve: commonResolve,
   module: {
     rules: commonLoaders.concat([
       {
