@@ -40,11 +40,12 @@ const Footer = styled.footer`
 `;
 
 const CardsBar = ({
-  activeCardIndex, cardsList, onCardChange, onEditChange, isCardsEditable, isCardRemoving, onChangeBarMode,
+  activeCardIndex, cardsList, onCardChange, onEditChange,
+  isCardsEditable, isCardRemoving, onChangeBarMode,
   removeCardId, deleteCard,
 }) => {
   const onCardClick = (index) => {
-    onCardChange && onCardChange(index);
+    onCardChange(index);
   };
 
   if (isCardRemoving) {
@@ -68,7 +69,7 @@ const CardsBar = ({
           .filter(item => !item.hidden)
           .map((card, index) => (
             <Card
-              key={index}
+              key={card.id}
               data={card}
               active={index === activeCardIndex}
               isCardsEditable={isCardsEditable}

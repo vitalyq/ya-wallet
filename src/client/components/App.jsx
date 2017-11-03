@@ -64,7 +64,7 @@ class App extends Component {
       });
 
       return {
-        id: card.id,
+        id: card._id,
         balance: card.balance,
         number: cardInfo.numberNice,
         bankName: cardInfo.bankName,
@@ -133,11 +133,10 @@ class App extends Component {
   onTransaction() {
     axios.get('/cards').then(({ data: cardData }) => {
       const cardsList = App.prepareCardsData(cardData);
-      this.setState({ cardsList });
 
       axios.get('/transactions').then(({ data: transactionData }) => {
         const cardHistory = App.prepareHistory(cardsList, transactionData);
-        this.setState({ cardHistory });
+        this.setState({ cardsList, cardHistory });
       });
     });
   }

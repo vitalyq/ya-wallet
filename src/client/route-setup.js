@@ -10,12 +10,12 @@ const DATA = {
     name: 'Samuel Johnson',
   },
   cards: [{
-    id: '59f1b35532c12a7e01dc5afb',
+    _id: '59f1b35532c12a7e01dc5afb',
     cardNumber: '5469257385340236',
     balance: 231310,
   },
   {
-    id: '59f1b35532c12a7e01dc5aff',
+    _id: '59f1b35532c12a7e01dc5aff',
     cardNumber: '4058705341084454',
     balance: 700,
   }],
