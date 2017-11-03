@@ -86,6 +86,7 @@ if (PROD) {
     ]),
     new ExtractTextPlugin('styles.css'),
     new BabelWebpackPlugin(),
+    new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en-gb|ru/),
     new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
     new webpack.optimize.ModuleConcatenationPlugin(),
   ]);
