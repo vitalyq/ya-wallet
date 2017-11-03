@@ -129,7 +129,7 @@ class Withdraw extends Component {
 
 Withdraw.propTypes = {
   activeCard: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
   }).isRequired,
   inactiveCardsList: PropTypes.arrayOf(PropTypes.object).isRequired,
   onTransaction: PropTypes.func.isRequired,

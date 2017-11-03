@@ -20,7 +20,7 @@ const CardEdit = ({ editable, onChangeBarMode, id }) => (
 CardEdit.propTypes = {
   editable: PropTypes.bool,
   onChangeBarMode: PropTypes.func,
-  id: PropTypes.number,
+  id: PropTypes.string,
 };
 
 export default CardEdit;

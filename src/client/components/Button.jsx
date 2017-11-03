@@ -29,13 +29,14 @@ const Button = ({ bgColor, textColor, children, className }) => (
 Button.propTypes = {
   bgColor: PropTypes.string,
   textColor: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   className: PropTypes.string,
 };
 
 Button.defaultProps = {
   bgColor: 'rgba(0, 0, 0, 0.05)',
   textColor: 'rgba(0, 0, 0, 0.65)',
+  className: null,
 };
 
 export default Button;

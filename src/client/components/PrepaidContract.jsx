@@ -215,7 +215,7 @@ class PrepaidContract extends Component {
 
 PrepaidContract.propTypes = {
   activeCard: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
   }).isRequired,
   inactiveCardsList: PropTypes.arrayOf(PropTypes.object).isRequired,
   onPaymentSuccess: PropTypes.func.isRequired,
