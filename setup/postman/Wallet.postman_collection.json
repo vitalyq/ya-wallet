@@ -172,6 +172,12 @@
 									"value": "100",
 									"description": "",
 									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "9218908064",
+									"description": "",
+									"type": "text"
 								}
 							]
 						},
@@ -230,6 +236,27 @@
 								"cards",
 								"59f1b35532c12a7e01dc5afb",
 								"transfer"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Initial State",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/state",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"state"
 							]
 						},
 						"description": ""
