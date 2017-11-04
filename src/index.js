@@ -8,8 +8,8 @@ const logger = require('./utils/logger');
 const koaLogger = require('./utils/koaLogger');
 const koaJoi = require('./utils/joi').middleware;
 const setupClientRoute = require('./client/route-setup');
-const cardsController = require('./cards/controller');
 const operationsController = require('./operations/controller');
+const cardsController = require('./cards/controller');
 const transactionsController = require('./transactions/controller');
 
 const app = new Koa();
@@ -17,6 +17,7 @@ const dbUrl = config.database.url;
 const port = config.server.port;
 
 // Routes
+router.get('/state', operationsController.getState);
 router.get('/cards', cardsController.getAll);
 router.post('/cards', cardsController.create);
 router.delete('/cards/:id', cardsController.delete);

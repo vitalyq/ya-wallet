@@ -46,7 +46,10 @@ const configServer = {
   name: 'server',
   target: 'node',
   externals: [nodeExternals({ whitelist: [/^antd/] })],
-  entry: './src/client/entry-server.jsx',
+  entry: [
+    'babel-polyfill',
+    './src/client/entry-server.jsx',
+  ],
   output: {
     path: BUILD_PATH,
     filename: 'server.js',

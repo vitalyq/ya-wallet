@@ -61,6 +61,17 @@ const operationsController = {
     };
     ctx.status = 201;
   },
+
+  async getState(ctx) {
+    ctx.body = {
+      user: {
+        login: 'samuel_johnson',
+        name: 'Samuel Johnson',
+      },
+      cards: await cardModel.getAll(),
+      transactions: await transModel.getAll(),
+    };
+  },
 };
 
 module.exports = operationsController;

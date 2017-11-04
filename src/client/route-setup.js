@@ -4,28 +4,10 @@
 const { isProduction, renderClient } = require('../config');
 const router = require('koa-router')();
 
-const DATA = {
-  user: {
-    login: 'samuel_johnson',
-    name: 'Samuel Johnson',
-  },
-  cards: [{
-    _id: '59f1b35532c12a7e01dc5afb',
-    cardNumber: '5469257385340236',
-    balance: 231310,
-  },
-  {
-    _id: '59f1b35532c12a7e01dc5aff',
-    cardNumber: '4058705341084454',
-    balance: 700,
-  }],
-  transactions: [],
-};
-
 module.exports = (app) => {
   if (isProduction) {
     const serverRenderer = require('../../dist/server').default;
-    router.get('/', serverRenderer(DATA));
+    router.get('/', serverRenderer());
     app.use(router.routes());
   } else if (renderClient) {
     const webpack = require('webpack');
@@ -44,7 +26,6 @@ module.exports = (app) => {
     });
     const hotServer = hotServerMiddleware(compiler, {
       createHandler: hotServerMiddleware.createKoaHandler,
-      serverRendererOptions: DATA,
     });
 
     // Render view from the server bundle

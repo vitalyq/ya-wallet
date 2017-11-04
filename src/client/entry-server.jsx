@@ -1,15 +1,20 @@
 import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { extractCritical } from 'emotion-server';
+import rp from 'request-promise-native';
 import { App } from './components';
 
-export default function serverRenderer(options) {
-  // Do not pass client and server stats to the view.
-  const appData = Object.assign({}, options);
-  delete appData.clientStats;
-  delete appData.serverStats;
+const getData = async (ctx) => {
+  const protocol = ctx.protocol;
+  const host = ctx.req.headers.host;
+  const origin = `${protocol}://${host}`;
+  const textData = await rp(`${origin}/state`);
+  return JSON.parse(textData);
+};
 
-  return (ctx) => {
+export default function serverRenderer() {
+  return async (ctx) => {
+    const appData = await getData(ctx);
     const app = renderToString(<App data={appData} />);
     const { html, ids, css } = extractCritical(app);
     const viewData = `window.__data=${JSON.stringify({ ids, appData })};`;
@@ -27,7 +32,7 @@ export default function serverRenderer(options) {
         <body>
           <div id="root" dangerouslySetInnerHTML={{ __html: html }} />
           <script dangerouslySetInnerHTML={{ __html: viewData }} />
-          <script src="client.js" />
+          <script src="/client.js" />
         </body>
       </html>
     );
